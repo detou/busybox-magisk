@@ -1,7 +1,7 @@
 CONFIGFILE="/sdcard/busybox-magisk.conf"
 
-# busybox location changed with Android 11, we can get it through cli
-BB="$(magisk --path)/.magisk/busybox/busybox"
+# tmpfs is not longer in /sbin for Android 11
+BB="/data/adb/magisk/busybox"
 BBPATH="$(dirname "$BB")"
 
 # Follow [busybox-ndk](https://github.com/Magisk-Modules-Repo/busybox-ndk
@@ -15,7 +15,7 @@ fi
 on_install() {
   local found
   local installed=""
-  local applets="busybox $(busybox --list)"
+  local applets="busybox $($BB --list)"
 
   ui_print "- Installing applets to /system/$BIN"
   # Delete previous pending update
