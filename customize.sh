@@ -1,11 +1,7 @@
 CONFIGFILE="/sdcard/busybox-magisk.conf"
 
-# busybox's location wasn't changed since 18.1
-# and is documented at [Internal Details](
-# https://github.com/topjohnwu/Magisk/blob/master/docs/details.md#paths-in-sbin-tmpfs-overlay
-# "Magisk/details.md at master · topjohnwu/Magisk")
-# So we believe it is stable
-BB="/sbin/.magisk/busybox/busybox"
+# busybox location changed with Android 11, we can get it through cli
+BB="$(magisk --path)/.magisk/busybox/busybox"
 BBPATH="$(dirname "$BB")"
 
 # Follow [busybox-ndk](https://github.com/Magisk-Modules-Repo/busybox-ndk
